@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtmstytksp6wp"]
+
+[ext_resource type="Script" uid="uid://dyix0f1oumcsm" path="res://scripts/Enemy/enemy.gd" id="1_nenq2"]
+[ext_resource type="Texture2D" uid="uid://dd3cdrhd8s3tl" path="res://art/enemyFlyingAlt_1.png" id="1_xwavj"]
+[ext_resource type="Texture2D" uid="uid://dgtchf8p6sx28" path="res://art/enemyFlyingAlt_2.png" id="2_nenq2"]
+[ext_resource type="Texture2D" uid="uid://db6lk04h1x8wj" path="res://art/enemySwimming_1.png" id="3_md484"]
+[ext_resource type="Texture2D" uid="uid://dy0tx7wamucar" path="res://art/enemySwimming_2.png" id="4_ipns3"]
+[ext_resource type="Texture2D" uid="uid://brtnli3g5kdpb" path="res://art/enemyWalking_1.png" id="5_8qclf"]
+[ext_resource type="Texture2D" uid="uid://fgslcbjwjhqw" path="res://art/enemyWalking_2.png" id="6_w8i8w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_otmr2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xwavj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nenq2")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_md484")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ipns3")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_8qclf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_w8i8w")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtq4b"]
+radius = 49.0
+height = 128.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Enemy" type="RigidBody2D" parent="."]
+position = Vector2(5, 1)
+gravity_scale = 0.0
+script = ExtResource("1_nenq2")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_otmr2")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(-9, 0)
+shape = SubResource("CapsuleShape2D_wtq4b")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Enemy"]
