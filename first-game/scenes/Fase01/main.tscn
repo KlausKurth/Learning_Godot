@@ -14,6 +14,8 @@ point_count = 5
 script = ExtResource("1_fsrrn")
 mob_scene = ExtResource("2_0f42l")
 
+[node name="Player" parent="." instance=ExtResource("3_opr4m")]
+
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
 
@@ -33,6 +35,7 @@ curve = SubResource("Curve2D_k7svl")
 position = Vector2(-3, 1)
 rotation = -0.0105038
 
-[node name="Player" parent="." instance=ExtResource("3_opr4m")]
-
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
